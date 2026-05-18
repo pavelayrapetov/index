@@ -117,7 +117,7 @@ svg{display:block;flex-shrink:0}
 <div class="screen active" id="s-welcome" style="padding:0 28px calc(var(--safe-bottom) + 40px);justify-content:space-between;position:relative;overflow:hidden">
 
   <!-- Video background -->
-  <video autoplay muted loop playsinline id="welcome-video"
+  <video autoplay loop playsinline id="welcome-video"
     style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:1">
     <source src="bg.mp4" type="video/mp4">
   </video>
@@ -258,53 +258,36 @@ svg{display:block;flex-shrink:0}
 </div>
 
 <!-- ══════════ HOME ══════════ -->
-<div class="screen" id="s-home" style="justify-content:flex-start;background:#000">
-  <!-- HERO: square photo, no empty space above -->
-  <div style="position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;cursor:pointer;flex-shrink:0" onclick="openPhotoSheet()">
-    <div id="home-photo-bg" style="width:100%;height:100%;background:linear-gradient(145deg,#0d1a2a,#1a2535);display:flex;align-items:center;justify-content:center;background-size:cover;background-position:center">
-      <svg id="home-silhouette" width="120" height="135" viewBox="0 0 80 90" fill="none" opacity=".15">
-        <circle cx="40" cy="24" r="18" fill="#4da6ff"/>
-        <path d="M10 82c0-16.57 13.43-30 30-30s30 13.43 30 30" fill="#4da6ff"/>
-      </svg>
-    </div>
-    <!-- top gradient: softens stats area, keeps Telegram header visible -->
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.55) 0%,transparent 22%,transparent 55%,rgba(0,0,0,.92) 100%);pointer-events:none"></div>
-
-    <!-- STATS CHIPS — top, glassmorphic, overlay on photo -->
-    <div style="position:absolute;top:calc(var(--safe-top) + 56px);left:14px;right:14px;display:flex;gap:8px;z-index:3">
-      <div style="flex:1;background:rgba(20,20,20,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:9px 10px;display:flex;flex-direction:column;align-items:center;gap:1px">
-        <div style="font-size:17px;font-weight:800;color:var(--red);letter-spacing:-.3px;line-height:1">12</div>
-        <div style="font-size:9px;color:rgba(255,255,255,.7);letter-spacing:1.4px;text-transform:uppercase;font-weight:700">Likes</div>
+<div class="screen" id="s-home" style="justify-content:flex-start;background:#131313">
+  <!-- HERO: rounded square photo -->
+  <div style="padding:16px 16px 0">
+    <div style="position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;cursor:pointer;border-radius:24px;flex-shrink:0" onclick="openPhotoSheet()">
+      <div id="home-photo-bg" style="width:100%;height:100%;background:linear-gradient(145deg,#0d1a2a,#1a2535);display:flex;align-items:center;justify-content:center;background-size:cover;background-position:center">
+        <svg id="home-silhouette" width="120" height="135" viewBox="0 0 80 90" fill="none" opacity=".15">
+          <circle cx="40" cy="24" r="18" fill="#4da6ff"/>
+          <path d="M10 82c0-16.57 13.43-30 30-30s30 13.43 30 30" fill="#4da6ff"/>
+        </svg>
       </div>
-      <div style="flex:1;background:rgba(20,20,20,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:9px 10px;display:flex;flex-direction:column;align-items:center;gap:1px">
-        <div style="font-size:17px;font-weight:800;color:var(--blue);letter-spacing:-.3px;line-height:1">3</div>
-        <div style="font-size:9px;color:rgba(255,255,255,.7);letter-spacing:1.4px;text-transform:uppercase;font-weight:700">Matches</div>
-      </div>
-      <div style="flex:1;background:rgba(20,20,20,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:9px 10px;display:flex;flex-direction:column;align-items:center;gap:1px">
-        <div style="font-size:17px;font-weight:800;color:#fff;letter-spacing:-.3px;line-height:1">47</div>
-        <div style="font-size:9px;color:rgba(255,255,255,.7);letter-spacing:1.4px;text-transform:uppercase;font-weight:700">Swipes</div>
-      </div>
-    </div>
-
-    <!-- NAME + CITY at bottom -->
-    <div style="position:absolute;bottom:0;left:0;right:0;padding:0 22px 22px;z-index:3">
-      <div id="home-name" style="font-size:30px;font-weight:800;letter-spacing:-.8px;line-height:1.05">Степан, 27</div>
-      <div style="font-size:13px;color:rgba(255,255,255,.7);margin-top:6px;display:flex;align-items:center;gap:6px">
-        <svg width="11" height="13" viewBox="0 0 12 14" fill="none"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 9.5 4 9.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" fill="rgba(255,255,255,.7)"/></svg>
-        <span id="home-city">Челябинск</span>
-        <span style="width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.4);margin:0 2px"></span>
-        <span style="color:var(--green);display:flex;align-items:center;gap:5px"><span style="width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)"></span>Online</span>
+      <!-- NAME + CITY at bottom -->
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:0 20px 18px;z-index:3;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 100%)">
+        <div id="home-name" style="font-size:30px;font-weight:800;letter-spacing:-.8px;line-height:1.05">Степан, 27</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.7);margin-top:5px;display:flex;align-items:center;gap:6px">
+          <svg width="11" height="13" viewBox="0 0 12 14" fill="none"><path d="M6 0C3.79 0 2 1.79 2 4c0 3 4 9.5 4 9.5S10 7 10 4c0-2.21-1.79-4-4-4zm0 5.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" fill="rgba(255,255,255,.7)"/></svg>
+          <span id="home-city">Челябинск</span>
+          <span style="width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,.4);margin:0 2px"></span>
+          <span style="color:var(--green);display:flex;align-items:center;gap:5px"><span style="width:6px;height:6px;border-radius:50%;background:var(--green)"></span>Online</span>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- FOLDERS — smaller, tighter, fills remaining space -->
-  <div style="flex:1;padding:14px 16px calc(var(--safe-bottom) + 18px);display:flex;flex-direction:column;justify-content:center;min-height:0">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+  <!-- FOLDERS -->
+  <div style="flex:1;padding:16px 16px calc(var(--safe-bottom) + 16px);display:flex;flex-direction:column;justify-content:center;min-height:0">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
 
       <!-- likes -->
       <div class="folder" onclick="go('s-likes')">
-        <div class="fi" style="height:calc((100vw - 44px) / 2.35);--tab-color:#7dd4ff">
+        <div class="fi" style="height:calc((100vw - 48px) / 2.35);--tab-color:#7dd4ff">
           <div class="fi-inner" style="background:linear-gradient(160deg,#5bb8ff,#2e8fe8)">
             <div style="position:absolute;top:10px;right:10px;background:#ff5a5a;color:#fff;font-size:10px;font-weight:800;padding:2px 8px;border-radius:20px;line-height:1.4;z-index:2">12</div>
             <span style="font-size:18px;font-weight:800;color:#fff;position:absolute;bottom:12px;left:14px;letter-spacing:-.4px">likes</span>
@@ -314,7 +297,7 @@ svg{display:block;flex-shrink:0}
 
       <!-- dating -->
       <div class="folder" onclick="go('s-dating')">
-        <div class="fi" style="height:calc((100vw - 44px) / 2.35);--tab-color:#ff8888">
+        <div class="fi" style="height:calc((100vw - 48px) / 2.35);--tab-color:#ff8888">
           <div class="fi-inner" style="background:linear-gradient(160deg,#ff6b6b,#e03535)">
             <span style="font-size:18px;font-weight:800;color:#fff;position:absolute;bottom:12px;left:14px;letter-spacing:-.4px">dating</span>
           </div>
@@ -323,7 +306,7 @@ svg{display:block;flex-shrink:0}
 
       <!-- chat -->
       <div class="folder" onclick="go('s-sms')">
-        <div class="fi" style="height:calc((100vw - 44px) / 2.35);--tab-color:#88ffb8">
+        <div class="fi" style="height:calc((100vw - 48px) / 2.35);--tab-color:#88ffb8">
           <div class="fi-inner" style="background:linear-gradient(160deg,#5eff9a,#28d068)">
             <span style="font-size:18px;font-weight:800;color:#fff;position:absolute;bottom:12px;left:14px;letter-spacing:-.4px">chat</span>
           </div>
@@ -332,7 +315,7 @@ svg{display:block;flex-shrink:0}
 
       <!-- settings -->
       <div class="folder" onclick="go('s-settings')">
-        <div class="fi" style="height:calc((100vw - 44px) / 2.35);--tab-color:#555">
+        <div class="fi" style="height:calc((100vw - 48px) / 2.35);--tab-color:#555">
           <div class="fi-inner" style="background:linear-gradient(160deg,#444,#282828)">
             <span style="font-size:18px;font-weight:800;color:#fff;position:absolute;bottom:12px;left:14px;letter-spacing:-.4px">settings</span>
           </div>
