@@ -15,7 +15,8 @@
   --safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px)
 }
 html,body{width:100%;height:100%;min-height:100dvh;background:#131313;color:var(--text);font-family:'Syne',sans-serif;overflow:hidden;user-select:none;touch-action:pan-x pan-y;-ms-touch-action:pan-x pan-y}
-.wm{display:none}
+.wm{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;font-size:21px;font-weight:800;color:rgba(255,255,255,.08);word-break:break-all;letter-spacing:-.5px;line-height:1.18;font-family:'Syne',sans-serif;display:none}
+.wm.dim{display:block}
 .screen{position:fixed;inset:0;bottom:0;z-index:1;display:flex;flex-direction:column;padding-top:var(--safe-top);padding-bottom:var(--safe-bottom);opacity:0;pointer-events:none;transition:opacity .32s ease,transform .32s cubic-bezier(.4,0,.2,1);transform:translateY(16px);overflow:hidden;height:100%;height:100dvh}
 .screen.active{opacity:1;pointer-events:all;transform:translateY(0)}
 .folder{display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer;transition:transform .18s cubic-bezier(.34,1.56,.64,1)}
@@ -258,9 +259,10 @@ svg{display:block;flex-shrink:0}
 </div>
 
 <!-- ══════════ HOME ══════════ -->
-<div class="screen" id="s-home" style="justify-content:flex-start;background:#131313;padding-top:0">
-  <!-- HERO: full-bleed photo, Telegram header overlays on top -->
-  <div style="position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;cursor:pointer;border-radius:0 0 28px 28px;flex-shrink:0" onclick="openPhotoSheet()">
+<div class="screen" id="s-home" style="justify-content:flex-start;background:#131313">
+  <!-- HERO: padded rounded square photo -->
+  <div style="padding:14px 14px 0">
+  <div style="position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;cursor:pointer;border-radius:22px;flex-shrink:0" onclick="openPhotoSheet()">
     <div id="home-photo-bg" style="width:100%;height:100%;background:linear-gradient(145deg,#0d1a2a,#1a2535);display:flex;align-items:center;justify-content:center;background-size:cover;background-position:center">
       <svg id="home-silhouette" width="120" height="135" viewBox="0 0 80 90" fill="none" opacity=".15">
         <circle cx="40" cy="24" r="18" fill="#4da6ff"/>
@@ -278,14 +280,15 @@ svg{display:block;flex-shrink:0}
       </div>
     </div>
   </div>
+  </div>
 
   <!-- FOLDERS -->
-  <div style="flex:1;padding:16px 16px calc(var(--safe-bottom) + 16px);display:flex;flex-direction:column;justify-content:center;min-height:0">
-    <div style="display:grid;grid-template-columns:1fr 1fr;column-gap:16px;row-gap:24px">
+  <div style="flex:1;padding:14px 14px calc(var(--safe-bottom) + 14px);display:flex;flex-direction:column;justify-content:center;min-height:0">
+    <div style="display:grid;grid-template-columns:1fr 1fr;column-gap:14px;row-gap:22px">
 
       <!-- likes -->
       <div class="folder" onclick="go('s-likes')">
-        <div class="fi" style="height:calc((100vw - 48px) / 2.3);--tab-color:#7dd4ff">
+        <div class="fi" style="height:calc((100vw - 42px) / 2.3);--tab-color:#7dd4ff">
           <div class="fi-inner" style="background:linear-gradient(160deg,#5bb8ff,#2e8fe8)">
             <div style="position:absolute;top:10px;right:10px;background:#ff5a5a;color:#fff;font-size:10px;font-weight:800;padding:2px 8px;border-radius:20px;line-height:1.4;z-index:2">12</div>
             <span style="font-size:18px;font-weight:800;color:#fff;position:absolute;bottom:12px;left:14px;letter-spacing:-.4px">likes</span>
@@ -295,7 +298,7 @@ svg{display:block;flex-shrink:0}
 
       <!-- dating -->
       <div class="folder" onclick="go('s-dating')">
-        <div class="fi" style="height:calc((100vw - 48px) / 2.3);--tab-color:#ff8888">
+        <div class="fi" style="height:calc((100vw - 42px) / 2.3);--tab-color:#ff8888">
           <div class="fi-inner" style="background:linear-gradient(160deg,#ff6b6b,#e03535)">
             <span style="font-size:18px;font-weight:800;color:#fff;position:absolute;bottom:12px;left:14px;letter-spacing:-.4px">dating</span>
           </div>
@@ -304,7 +307,7 @@ svg{display:block;flex-shrink:0}
 
       <!-- chat -->
       <div class="folder" onclick="go('s-sms')">
-        <div class="fi" style="height:calc((100vw - 48px) / 2.3);--tab-color:#88ffb8">
+        <div class="fi" style="height:calc((100vw - 42px) / 2.3);--tab-color:#88ffb8">
           <div class="fi-inner" style="background:linear-gradient(160deg,#5eff9a,#28d068)">
             <span style="font-size:18px;font-weight:800;color:#fff;position:absolute;bottom:12px;left:14px;letter-spacing:-.4px">chat</span>
           </div>
@@ -313,7 +316,7 @@ svg{display:block;flex-shrink:0}
 
       <!-- settings -->
       <div class="folder" onclick="go('s-settings')">
-        <div class="fi" style="height:calc((100vw - 48px) / 2.3);--tab-color:#555">
+        <div class="fi" style="height:calc((100vw - 42px) / 2.3);--tab-color:#555">
           <div class="fi-inner" style="background:linear-gradient(160deg,#444,#282828)">
             <span style="font-size:18px;font-weight:800;color:#fff;position:absolute;bottom:12px;left:14px;letter-spacing:-.4px">settings</span>
           </div>
@@ -573,9 +576,15 @@ svg{display:block;flex-shrink:0}
 // nav — объявляем cur ДО watermark
 let hist=[],cur='s-welcome';
 
-// watermark — всегда показываем, ярче и плотнее
 const wm=document.getElementById('wm');
-for(let i=0;i<60;i++){const s=document.createElement('span');s.textContent='SUPDATING';wm.appendChild(s)}
+wm.textContent='SUPDATING'.repeat(600);
+
+function wmUpdate(){wm.classList.toggle('dim',cur!=='s-welcome');}
+function vidUpdate(){
+  const v=document.getElementById('welcome-video');
+  if(!v)return;
+  if(cur==='s-welcome'){v.play();}else{v.pause();}
+}
 
 function go(id){
   if(id===cur)return;
@@ -586,8 +595,7 @@ function go(id){
   requestAnimationFrame(()=>requestAnimationFrame(()=>{n.style.cssText=''}));
   setTimeout(()=>{c.style.cssText=''},350);
   hist.push(cur);cur=id;
-  // watermark ярче на welcome, темнее на остальных
-  wm.classList.add('dim');
+  wmUpdate();vidUpdate();
 }
 function goBack(){
   if(!hist.length)return;
@@ -596,13 +604,13 @@ function goBack(){
   const pe=document.getElementById(p);
   pe.style.cssText='';pe.classList.add('active');
   cur=p;
-  wm.classList.add('dim');
+  wmUpdate();vidUpdate();
 }
 function skipHome(){
   hist=[];
   document.querySelectorAll('.screen').forEach(s=>{s.classList.remove('active');s.style.cssText=''});
   cur='s-home';document.getElementById('s-home').classList.add('active');
-  wm.classList.add('dim');
+  wmUpdate();vidUpdate();
 }
 
 // ── REGISTER ──
