@@ -123,7 +123,7 @@ svg{display:block;flex-shrink:0}
   <div class="handle"></div>
   <div style="font-size:20px;font-weight:800;letter-spacing:-.5px;margin-bottom:24px">Edit profile</div>
   <div style="display:flex;flex-direction:column;gap:16px">
-    <div><label class="lbl">Name</label><input class="inp" id="edit-name" placeholder="Your name"></div>
+    <div><label class="lbl">Name <span style="color:var(--text2);font-weight:400;font-size:11px">latin only</span></label><input class="inp" id="edit-name" placeholder="Your name" oninput="this.value=this.value.replace(/[^a-zA-Z\s\-]/g,'')"></div>
     <div><label class="lbl">Age</label><input class="inp" id="edit-age" placeholder="Age" type="number"></div>
     <div><label class="lbl">City</label><input class="inp" id="edit-city" placeholder="Your city"></div>
     <div><label class="lbl">About</label><textarea class="inp" id="edit-about" placeholder="A few words about you..." rows="3" style="resize:none;line-height:1.5"></textarea></div>
@@ -203,7 +203,7 @@ svg{display:block;flex-shrink:0}
 
   <!-- Step 1: name + age + city -->
   <div class="fc" id="rs1" style="padding-top:8px;display:flex;flex-direction:column;gap:16px">
-    <div><label class="lbl">Имя</label><input class="inp" id="r-name" placeholder="Введи имя..."></div>
+    <div><label class="lbl">Имя <span style="color:var(--text2);font-weight:400;font-size:11px">только латиница</span></label><input class="inp" id="r-name" placeholder="Например: Stepan" oninput="this.value=this.value.replace(/[^a-zA-Z\s\-]/g,'')"></div>
     <div><label class="lbl">Возраст</label><input class="inp" id="r-age" placeholder="18–100" type="number" min="18" max="100"></div>
     <div><label class="lbl">Город</label><input class="inp" id="r-city" placeholder="Твой город"></div>
   </div>
@@ -656,6 +656,7 @@ function rNext() {
     const age  = parseInt(document.getElementById('r-age').value);
     const city = document.getElementById('r-city').value.trim();
     if (!name) { toast2('Введи своё имя'); return; }
+    if (!/^[a-zA-Z\s\-]+$/.test(name)) { toast2('Имя — только латинские буквы'); return; }
     if (!age || age < 18 || age > 100) { toast2('Возраст от 18 до 100'); return; }
     if (!city) { toast2('Укажи город'); return; }
     rSetStep(2);
